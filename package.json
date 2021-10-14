@@ -1,6 +1,5 @@
 {
   "homepage": "https://codelastnight.github.io/wrek-search",
-
   "name": "wrek-search",
   "version": "0.1.0",
   "private": true,
@@ -14,7 +13,7 @@
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.0.1"
-  }, 
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -40,5 +39,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "typescript-plugin-css-modules": "^3.4.0"
   }
 }

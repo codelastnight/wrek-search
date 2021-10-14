@@ -12,3 +12,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.result {
+  padding-top: 4rem;
+  padding-left: 4rem;
+}

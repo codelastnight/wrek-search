@@ -1,6 +1,5 @@
 .search {
     position: relative;
-    margin-bottom: 10rem;
     input {
         width: 20rem;
         position: relative;
@@ -17,7 +16,7 @@
  
         
 
-        &--item {
+        &__item {
             cursor: pointer;
             &:active {
 
@@ -38,6 +37,6 @@
     
 }
 
-.search-wrapper {
+.search__wrapper {
     display: flex;
 }

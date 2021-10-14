@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Fuse from 'fuse.js'
 import matchList from './list.json'
-import './search.scss'
+import classes from './search.module.scss'
 
 const options = {
       
@@ -31,20 +31,25 @@ function Search(props: SearchProps) {
     props.setSearch(data)
   }
 
+  const handleKeyDown = (event: any) => {
+    if (event.key === 'Enter') {
+      sendSearch(event.target.value)
+    }
+  }
   return (
-    <div className="search">
-      <div className="search-wrapper">
-        <input value={result} onChange={e => onInput(e)} placeholder="search for anything,,,">
+    <div className={classes.search}>
+      <div className={classes.search__wrapper}>
+        <input value={result} onChange={e => onInput(e)} onKeyDown={handleKeyDown} placeholder="search for anything,,,">
     
         </input>
         <button onClick={() => sendSearch(result)}>Search!</button>
        
       </div>
-      <div className={ results.length > 0 ? "search__auto show" : "search__auto" }>
+      <div className={ results.length > 0 ? `${classes.search__auto} ${classes.show}`: classes.search__auto }>
           {
             results.map((item, i) => (
               <div 
-                className="search__auto--item"
+                className={classes.search__auto__item}
                 key={i} 
                 onClick={() => sendSearch(item.item as string)}
                 tabIndex={0} 
