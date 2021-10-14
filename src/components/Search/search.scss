@@ -4,24 +4,22 @@
     input {
         width: 20rem;
         position: relative;
+        margin-right: 4px;
     }
-   
-
+    button {
+        cursor: pointer;
+    }
     &__auto {
         position: absolute;
         display: none;
+        pointer-events: auto;
 
  
-        &.show {
-            display: block;
-            outline: 1px solid;
-            padding: 4px;
-            background: white;
-        }
+        
 
-        div {
+        &--item {
             cursor: pointer;
-            &:hover {
+            &:active {
 
                 background: skyblue;
             }
@@ -29,4 +27,17 @@
         
         width: 100%;
     }
+    &:focus-within {
+        .show{
+            display: block;
+            outline: 1px solid;
+            padding: 4px;
+            background: white;
+        }
+    }
+    
+}
+
+.search-wrapper {
+    display: flex;
 }

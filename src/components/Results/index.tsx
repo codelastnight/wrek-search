@@ -1,8 +1,8 @@
-function Results() {
+function Results(props: any) {
     return (
-      <div className="App">
+      <div className="">
 
-        
+        {props.searchResult}
       </div>
     );
   }

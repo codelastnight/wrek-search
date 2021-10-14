@@ -3,25 +3,31 @@ import Main from './components/Main';
 import Results from './components/Results';
 import './App.css';
 
-function Greeting(props: any) {
-  const isLoggedIn = props.isLoggedIn;
-  if (!isLoggedIn) {
-    return <Main />;
-  }
-  return <Results />;
-}
 
 
 function App() {
-  const [isResult, setIsResult] = useState(false)
-
-
+ 
   return (
     <div className="App">
-       <Greeting isLoggedIn={isResult} />
+       <Greeting  />
       
     </div>
   );
 }
+
+
+function Greeting(props: any) {
+
+  const [result, setResult] = useState('')
+  const setSearch = (data:string) => {
+      setResult(data)
+  }
+
+  if (result.length == 0 ) {
+    return <Main searchResult={result}  setSearch={setSearch} />;
+  }
+  return <Results searchResult={result} setSearch={setSearch}/>;
+}
+
 
 export default App;

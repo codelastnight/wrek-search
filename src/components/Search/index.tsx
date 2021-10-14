@@ -1,20 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Fuse from 'fuse.js'
 import matchList from './list.json'
 import './search.scss'
 
-function Search(props: any) {
-  const [results, setResults] = useState([] as Fuse.FuseResult<unknown>[]) 
-
-  function onInput(e:React.ChangeEvent<HTMLInputElement>) {
-
-    const options = {
+const options = {
       
-    }
-    
-    const fuse = new Fuse(matchList.match, options)
-    
-    
+}
+
+interface SearchProps{
+  searchResult: string
+  setSearch: (data: string) => void
+}
+
+function Search(props: SearchProps) {
+  const [results, setResults] = useState([] as Fuse.FuseResult<unknown>[]) 
+  const [result, setResult] = useState(props.searchResult)
+  function onInput(e:React.ChangeEvent<HTMLInputElement>) {
+    setResult(e.target.value)
+    const fuse = new Fuse(matchList.match, options) 
     if (e.target.value.length > 0 ) {
       setResults(fuse.search(e.target.value))
     } else {
@@ -22,21 +25,37 @@ function Search(props: any) {
     }
   }
 
-  useEffect(() => {
-    // Update the document title using the browser API
-    
-  });
+  function sendSearch(data:string) {
+    console.log(data)
+    setResult(data)
+    props.setSearch(data)
+  }
+
   return (
     <div className="search">
-      <input onChange={e => onInput(e)} placeholder="search for anything,,,"></input>
-      <div className={ results.length > 0 ? "search__auto show" : "search__auto" }>
-        {
-          results.map((item, i) => 
-          <div key={i}> {item.item} {item.score} </div>
-          )
-        }
-
+      <div className="search-wrapper">
+        <input value={result} onChange={e => onInput(e)} placeholder="search for anything,,,">
+    
+        </input>
+        <button onClick={() => sendSearch(result)}>Search!</button>
+       
       </div>
+      <div className={ results.length > 0 ? "search__auto show" : "search__auto" }>
+          {
+            results.map((item, i) => (
+              <div 
+                className="search__auto--item"
+                key={i} 
+                onClick={() => sendSearch(item.item as string)}
+                tabIndex={0} 
+                > { 
+                item.item as string
+                } 
+                </div>
+            ))
+          }
+
+        </div>
     </div>
   );
 }
